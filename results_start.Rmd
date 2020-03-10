@@ -1,0 +1,33 @@
+---
+title: "results_graphs_brainstorm"
+author: "Madeline Berger"
+date: "3/9/2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE,
+                      message = FALSE,
+                      warning = FALSE)
+
+
+library(tidyverse)
+library(janitor)
+library(patchwork)
+library(gt)
+library(paletteer)
+
+results_all <- read_csv("calculation_result.csv")
+
+water_content <- read_csv("sa_water_content.csv")
+```
+
+###Making graphs for baseline results
+
+Bar Graphs
+```{r cars}
+
+print(paletteer_d("IslamicArt::jerusalem"))
+
+
+```
