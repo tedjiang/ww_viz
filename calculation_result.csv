@@ -1,47 +1,38 @@
-Input Pertubation,Input Unit,New Ratio,Location,GHG,AP,EP,Land Use,Year,Feedstock ,Substituion Type,Type,Notes,Data Type,
-3.40,Currency,94.04%,Origonal,2.36E-02,1.08E-01,6.88E-02,1.35E-01,,Olive,NA,Economic,,Value,
-1.61,Currency,88.18%,Spain (Min),4.68E-02,2.14E-01,1.36E-01,2.68E-01,2011,Olive,NA,Economic,,Value,
-4.03,Currency,94.93%,Italy (Max),2.01E-02,9.18E-02,5.85E-02,1.15E-01,2017,Olive,NA,Economic,,Value,
-1.88,Currency,89.70%,Portugal (Min),4.08E-02,1.86E-01,1.19E-01,2.34E-01,2012,Olive,NA,Economic,,Value,
-1.73,Currency,88.93%,Greece (Min),4.39E-02,2.00E-01,1.28E-01,2.51E-01,2020,Olive,NA,Economic,,Value,
-3.45,Currency,94.13%,Greece (Max),2.33E-02,1.06E-01,6.77E-02,1.33E-01,2017,Olive,NA,Economic,,Value,
-3.34,Currency,93.93%,Spain (Max),2.40E-02,1.10E-01,7.00E-02,1.38E-01,2017,Olive,NA,Economic,,Value,
-2.02,Currency,90.36%,Italy (Min),3.82E-02,1.74E-01,1.11E-01,2.19E-01,2010,Olive,NA,Economic,,Value,
-3.76,Currency,94.57%,Portugal (Max),2.15E-02,9.83E-02,6.26E-02,1.23E-01,2017,Olive,NA,Economic,,Value,
-24.33,Currency,99.78%,Spain,3.86E-02,1.74E-04,1.32E-04,1.91E-02,2018,Grape,NA,Economic,(Expensive wine High price),Value,
-12.50,Currency,99.58%,Spain,7.49E-02,3.38E-04,2.56E-04,3.70E-02,2017,Grape,NA,Economic,"(Expensive wine, low value)",Value,
-5.51,Currency,99.06%,Spain,1.69E-01,7.62E-04,5.79E-04,8.36E-02,2018,Grape,NA,Economic,"(Regular priced wine, high value)",Value,
-2.55,Currency,97.98%,Spain,3.62E-01,1.63E-03,1.24E-03,1.79E-01,2019,Grape,NA,Economic,"(Regualr priced wine, low value)",Value,
-22.49,Currency,99.77%,France,4.17E-02,1.88E-04,1.43E-04,2.06E-02,2018,Grape,NA,Economic,"(Expensive wine, high price)",Value,
-10.38,Currency,99.50%,France,9.01E-02,4.06E-04,3.09E-04,4.46E-02,2016,Grape,NA,Economic,"(Expensive wine , low value)",Value,
-1400.70,Currency,81.93%,Venezuela,1.66E-01,3.63E-04,4.77E-04,1.26E+00,2013,Coffee,NA,Economic,,Value,
-2634.70,Currency,89.50%,Central Am,9.63E-02,2.11E-04,2.77E-04,7.30E-01,2013,Coffee,NA,Economic,,Value,
-5287.70,Currency,94.48%,Bolivia,5.07E-02,1.11E-04,1.46E-04,3.84E-01,2013,Coffee,NA,Economic,,Value,
-3134.81,Currency,97.51%,,5.17E-02,6.58E-04,1.10E-03,9.77E-03,,Cocoa,NA,Economic,,Value,
-1799.63,Currency,,,7.02E-02,8.93E-04,1.50E-03,1.33E-02,,Cocoa,NA,Economic,,Value,
-885.33,Currency,91.70%,,1.72E-01,2.19E-03,3.68E-03,3.25E-02,,Cocoa,NA,Economic,,Value,
-Plus 10 % scenario,NA,112.60%,NA,3.22E-01,1.18E-02,1.92E-04,1.26E+00,NA,Grape,Animal Feed,Substitution,Animal Feed,Value,
-Middle,NA,102.36%,NA,2.93E-01,1.07E-02,1.74E-04,1.15E+00,NA,Grape,Animal Feed,Substitution,Animal Feed,Value,
-Minus 10 % scenario,NA,92.13%,NA,2.64E-01,9.65E-03,1.57E-04,1.03E+00,NA,Grape,Animal Feed,Substitution,Animal Feed,Value,
-Plus 10 % scenario,NA,4.40%,NA,3.23E-01,3.15E-03,2.90E-04,7.21E-01,NA,Olive,2nd Oil,Substitution,2nd Oil,Value,
-Middle,NA,4.00%,NA,2.94E-01,2.86E-03,2.63E-04,6.56E-01,NA,Olive,2nd Oil,Substitution,2nd Oil,Value,
-Minus 10 % scenario,NA,3.60%,NA,2.64E-01,2.58E-03,2.37E-04,5.90E-01,NA,Olive,2nd Oil,Substitution,2nd Oil,Value,
-Plus 10 % scenario,NA,5.00%,NA,1.18E-01,9.55E-04,8.83E-05,6.86E-03,NA,All,Fertilizer,Substitution,Fertilizer,Value,
-Middle,NA,2.20%,NA,5.20E-02,4.20E-04,3.89E-05,3.02E-03,NA,All,Fertilizer,Substitution,Fertilizer,Value,
-Minus 10 % scenario,NA,1.00%,NA,2.36E-02,1.91E-04,1.77E-05,1.37E-03,NA,All,Fertilizer,Substitution,Fertilizer,Value,
-Plus 10 % scenario,NA,110.00%,NA,0.654687,0.00584474,0.000391501,0.810678,NA,Coffee,Animal Feed,Substitution,Animal Feed,Value,
-Middle,NA,100.00%,NA,0.59517,0.0053134,0.00035591,0.73698,NA,Coffee,Animal Feed,Substitution,Animal Feed,Value,
-Minus 10 % scenario,NA,90.00%,NA,0.535653,0.00478206,0.000320319,0.663282,NA,Coffee,Animal Feed,Substitution,Animal Feed,Value,
-Plus 10 % scenario,NA,54.30%,NA,6.50E-02,1.68E-04,5.32E-06,4.51E-04,NA,Cocoa,Biofuel,Substitution,Biofuel,Value,
-Middle,NA,49.37%,NA,5.91E-02,1.53E-04,4.83E-06,4.10E-04,NA,Cocoa,Biofuel,Substitution,Biofuel,Value,
-Minus 10 % scenario,NA,44.43%,NA,5.32E-02,1.37E-04,4.35E-06,3.69E-04,NA,Cocoa,Biofuel,Substitution,Biofuel,Value,
-0.012,kg,1.20%,NA,0.138336,0.000613056,5.21244E-06,0.00803808,NA,Grape,N Fertilizer,Substitution,Low Bound,Value,
-0.042,kg,4.20%,NA,0.484176,0.002145696,1.82435E-05,0.02813328,NA,Grape,N Fertilizer,Substitution,High Bound,Value,
-0.02,kg,2.00%,NA,0.23056,0.00102176,8.6874E-06,0.0133968,NA,Olive,N Fertilizer,Substitution,High Bound,Value,
-0.0107,kg,1.07%,NA,0.1233496,0.000546642,4.64776E-06,0.007167288,NA,Olive,N Fertilizer,Substitution,Low Bound,Value,
-0.015,kg,1.50%,NA,0.17292,0.00076632,6.51555E-06,0.0100476,NA,Olive,N Fertilizer,Substitution,Mean,Value,
-0.0119,kg,1.19%,NA,0.022320835,0.000156818,4.74551E-06,0.016850364,NA,Olive,K Fertilizer,Substitution,High Bound,Value,
-0.0019,kg,0.19%,NA,0.009899617,6.95513E-05,2.1047E-06,0.007473383,NA,Olive,K Fertilizer,Substitution,Low Bound,Value,
-0.0041,kg,0.41%,NA,0.016156922,0.000113513,3.43503E-06,0.012197125,NA,Olive,K Fertilizer,Substitution,Mean,Value,
-0.025,kg,2.50%,NA,0.2882,0.0012772,1.08593E-05,0.016746,NA,Cocoa,N Fertilizer,Substitution,Mean,Value,
-0.0238,kg,2.38%,NA,0.2743664,0.001215894,1.0338E-05,0.015942192,NA,Coffee,N Fertilizer,Substitution,Mean,Value,
+Input Pertubation,Input Unit,New Ratio,Location,GHG,AP,EP,Land Use,Year,Feedstock ,Substituion Type,Type,Notes,Data Type
+3.4,Currency,94.04%,Origonal,2.36E-02,1.08E-01,6.88E-02,1.35E-01,,Olive,NA,Economic,Baseline,Value
+1.61,Currency,88.18%,Spain (Min),4.68E-02,2.14E-01,1.36E-01,2.68E-01,2011,Olive,NA,Economic,High Bound,Value
+4.03,Currency,94.93%,Italy (Max),2.01E-02,9.18E-02,5.85E-02,1.15E-01,2017,Olive,NA,Economic,Low Bound,Value
+24.33,Currency,99.78%,Spain,3.86E-02,1.74E-04,1.32E-04,1.91E-02,2018,Grape,NA,Economic,Low Bound,Value
+5.51,Currency,99.06%,Spain,1.69E-01,7.62E-04,5.79E-04,8.36E-02,2018,Grape,NA,Economic,Baseline,Value
+2.55,Currency,97.98%,Spain,3.62E-01,1.63E-03,1.24E-03,1.79E-01,2019,Grape,NA,Economic,High Bound,Value
+1400.7,Currency,81.93%,Venezuela,1.66E-01,3.63E-04,4.77E-04,1.26E+00,2013,Coffee,NA,Economic,High Bound,Value
+2634.7,Currency,89.50%,Central Am,9.63E-02,2.11E-04,2.77E-04,7.30E-01,2013,Coffee,NA,Economic,Baseline,Value
+5287.7,Currency,94.48%,Bolivia,5.07E-02,1.11E-04,1.46E-04,3.84E-01,2013,Coffee,NA,Economic,Low Bound,Value
+3134.81,Currency,97.51%,,5.17E-02,6.58E-04,1.10E-03,9.77E-03,,Cocoa,NA,Economic,Low Bound,Value
+1799.63,Currency,,,7.02E-02,8.93E-04,1.50E-03,1.33E-02,,Cocoa,NA,Economic,Baseline,Value
+885.33,Currency,91.70%,,1.72E-01,2.19E-03,3.68E-03,3.25E-02,,Cocoa,NA,Economic,High Bound,Value
+Plus 10 % scenario,NA,112.60%,NA,3.22E-01,1.18E-02,1.92E-04,1.26E+00,NA,Grape,Animal Feed,Substitution,High Bound,Value
+Middle,NA,102.36%,NA,2.93E-01,1.07E-02,1.74E-04,1.15E+00,NA,Grape,Animal Feed,Substitution,Baseline,Value
+Minus 10 % scenario,NA,92.13%,NA,2.64E-01,9.65E-03,1.57E-04,1.03E+00,NA,Grape,Animal Feed,Substitution,Low Bound,Value
+Plus 10 % scenario,NA,4.40%,NA,3.23E-01,3.15E-03,2.90E-04,7.21E-01,NA,Olive,2nd Oil,Substitution,High Bound,Value
+Middle,NA,4.00%,NA,2.94E-01,2.86E-03,2.63E-04,6.56E-01,NA,Olive,2nd Oil,Substitution,Baseline,Value
+Minus 10 % scenario,NA,3.60%,NA,2.64E-01,2.58E-03,2.37E-04,5.90E-01,NA,Olive,2nd Oil,Substitution,Low Bound,Value
+Plus 10 % scenario,NA,5.00%,NA,1.18E-01,9.55E-04,8.83E-05,6.86E-03,NA,All,Fertilizer,Substitution,High Bound,Value
+Middle,NA,2.20%,NA,5.20E-02,4.20E-04,3.89E-05,3.02E-03,NA,All,Fertilizer,Substitution,Baseline,Value
+Minus 10 % scenario,NA,1.00%,NA,2.36E-02,1.91E-04,1.77E-05,1.37E-03,NA,All,Fertilizer,Substitution,Low Bound,Value
+Plus 10 % scenario,NA,110.00%,NA,0.654687,0.00584474,0.000391501,0.810678,NA,Coffee,Animal Feed,Substitution,High Bound,Value
+Middle,NA,100.00%,NA,0.59517,0.0053134,0.00035591,0.73698,NA,Coffee,Animal Feed,Substitution,Baseline,Value
+Minus 10 % scenario,NA,90.00%,NA,0.535653,0.00478206,0.000320319,0.663282,NA,Coffee,Animal Feed,Substitution,Low Bound,Value
+Plus 10 % scenario,NA,54.30%,NA,6.50E-02,1.68E-04,5.32E-06,4.51E-04,NA,Cocoa,Biofuel,Substitution,High Bound,Value
+Middle,NA,49.37%,NA,5.91E-02,1.53E-04,4.83E-06,4.10E-04,NA,Cocoa,Biofuel,Substitution,Baseline,Value
+Minus 10 % scenario,NA,44.43%,NA,5.32E-02,1.37E-04,4.35E-06,3.69E-04,NA,Cocoa,Biofuel,Substitution,Low Bound,Value
+0.012,kg,1.20%,NA,0.138336,0.000613056,5.21E-06,0.00803808,NA,Grape,N Fertilizer,Substitution,Low Bound,Value
+0.042,kg,4.20%,NA,0.484176,0.002145696,1.82E-05,0.02813328,NA,Grape,N Fertilizer,Substitution,High Bound,Value
+0.02,kg,2.00%,NA,0.23056,0.00102176,8.69E-06,0.0133968,NA,Olive,N Fertilizer,Substitution,High Bound,Value
+0.0107,kg,1.07%,NA,0.1233496,0.000546642,4.65E-06,0.007167288,NA,Olive,N Fertilizer,Substitution,Low Bound,Value
+0.015,kg,1.50%,NA,0.17292,0.00076632,6.52E-06,0.0100476,NA,Olive,N Fertilizer,Substitution,Baseline,Value
+0.0119,kg,1.19%,NA,0.022320835,0.000156818,4.75E-06,0.016850364,NA,Olive,K Fertilizer,Substitution,High Bound,Value
+0.0019,kg,0.19%,NA,0.009899617,6.96E-05,2.10E-06,0.007473383,NA,Olive,K Fertilizer,Substitution,Low Bound,Value
+0.0041,kg,0.41%,NA,0.016156922,0.000113513,3.44E-06,0.012197125,NA,Olive,K Fertilizer,Substitution,Baseline,Value
+0.025,kg,2.50%,NA,0.2882,0.0012772,1.09E-05,0.016746,NA,Cocoa,N Fertilizer,Substitution,Baseline,Value
+0.0238,kg,2.38%,NA,0.2743664,0.001215894,1.03E-05,0.015942192,NA,Coffee,N Fertilizer,Substitution,Baseline,Value
