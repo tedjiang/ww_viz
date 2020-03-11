@@ -17,7 +17,8 @@ library(patchwork)
 library(gt)
 library(paletteer)
 
-results_all <- read_csv("calculation_result.csv")
+results_all <- read_csv("calculation_result.csv") %>% 
+  clean_names()
 
 water_content <- read_csv("sa_water_content.csv")
 ```
@@ -28,6 +29,17 @@ Bar Graphs
 ```{r cars}
 
 print(paletteer_d("IslamicArt::jerusalem"))
+
+#filter for just the baseline results
+
+baseline_ghg_econ <- results_all %>% 
+  filter(notes == "Baseline") %>% 
+  mutate(
+    type_detail = ifelse(str_detect(substituion_type, pattern = "Fertilizer"),
+                                    paste(substituion_type, type),
+                                    paste(type,type))
+  )
+
 
 
 ```
