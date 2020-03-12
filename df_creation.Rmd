@@ -1,0 +1,39 @@
+---
+title: "water_content"
+author: "Yingfei Jiang"
+date: "3/12/2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+library(janitor)
+library(here)
+```
+
+```{r}
+raw_df <- read_csv("calculation_result.csv") %>% 
+  clean_names()
+
+raw_water <- read_csv("sa_water_content.csv") %>% 
+  clean_names()
+```
+```{r}
+water_upper <- raw_water %>% 
+  filter(bound == "Upper bound") %>% 
+  filter(feed_stock != "3 Phase Olive Pomace") %>% 
+  rename(feedstock = product)
+
+final_df <- full_join(raw_df, water_upper, by = "feedstock") %>% 
+  filter(notes == "Baseline",
+         feedstock != "All")
+```
+
+```{r}
+path <- here("water_content.csv")
+
+write_excel_csv(final_df, path, na = "NA", append = FALSE, col_names = FALSE, delim = ",", quote_escape = "double")
+```
+
+
