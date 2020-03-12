@@ -1,0 +1,111 @@
+---
+title: "1-1-line"
+author: "Yingfei Jiang"
+date: "3/12/2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+library(janitor)
+```
+
+```{r}
+raw_df <- read_csv("calculation_result.csv") %>% 
+  clean_names()
+
+baseline_gwp <- raw_df %>% 
+  filter(notes == "Baseline") %>% 
+  filter(feedstock != "All") %>% 
+  mutate(type_final = case_when(
+    type == "Economic" ~ "Economic",
+    type == "Substitution" ~ substituion_type
+  )) %>% 
+  select(ghg, feedstock, type_final) %>% 
+  spread(key = type_final, value = ghg) %>% 
+  clean_names()
+
+ggplot(baseline_gwp)+
+  geom_point(aes(x = economic, y = n_fertilizer, shape = feedstock, color = "N Fertilizer"), size = 3)+
+  geom_point(aes(x = economic, y = k_fertilizer, shape = feedstock, color = "K Fertilizer"), size = 3)+
+  geom_point(aes(x = economic, y = biofuel, shape = feedstock, color = "Biofuel"), size = 3)+
+  geom_point(aes(x = economic, y = animal_feed, shape = feedstock, color = "Animal Feed"), size = 3)+
+  geom_point(aes(x = economic, y = x2nd_oil, shape = feedstock, color = "2nd Oil"), size = 3)+
+  geom_abline(slope = 1, intercept = 0)+
+  xlim(0, 0.2)+
+  ylim(0, 0.65)+
+  theme_minimal()
+```
+
+```{r}
+baseline_ap <- raw_df %>% 
+  filter(notes == "Baseline") %>% 
+  filter(feedstock != "All") %>% 
+  mutate(type_final = case_when(
+    type == "Economic" ~ "Economic",
+    type == "Substitution" ~ substituion_type
+  )) %>% 
+  select(ap, feedstock, type_final) %>% 
+  spread(key = type_final, value = ap) %>% 
+  clean_names()
+
+ggplot(baseline_ap)+
+  geom_point(aes(x = economic, y = n_fertilizer, shape = feedstock, color = "N Fertilizer"), size = 3)+
+  geom_point(aes(x = economic, y = k_fertilizer, shape = feedstock, color = "K Fertilizer"), size = 3)+
+  geom_point(aes(x = economic, y = biofuel, shape = feedstock, color = "Biofuel"), size = 3)+
+  geom_point(aes(x = economic, y = animal_feed, shape = feedstock, color = "Animal Feed"), size = 3)+
+  geom_point(aes(x = economic, y = x2nd_oil, shape = feedstock, color = "2nd Oil"), size = 3)+
+  geom_abline(slope = 1, intercept = 0)+
+  xlim(0, 0.2)+
+  ylim(0, 0.65)+
+  theme_minimal()
+```
+
+```{r}
+baseline_ep <- raw_df %>% 
+  filter(notes == "Baseline") %>% 
+  filter(feedstock != "All") %>% 
+  mutate(type_final = case_when(
+    type == "Economic" ~ "Economic",
+    type == "Substitution" ~ substituion_type
+  )) %>% 
+  select(ep, feedstock, type_final) %>% 
+  spread(key = type_final, value = ep) %>% 
+  clean_names()
+
+ggplot(baseline_ep)+
+  geom_point(aes(x = economic, y = n_fertilizer, shape = feedstock, color = "N Fertilizer"), size = 3)+
+  geom_point(aes(x = economic, y = k_fertilizer, shape = feedstock, color = "K Fertilizer"), size = 3)+
+  geom_point(aes(x = economic, y = biofuel, shape = feedstock, color = "Biofuel"), size = 3)+
+  geom_point(aes(x = economic, y = animal_feed, shape = feedstock, color = "Animal Feed"), size = 3)+
+  geom_point(aes(x = economic, y = x2nd_oil, shape = feedstock, color = "2nd Oil"), size = 3)+
+  geom_abline(slope = 1, intercept = 0)+
+  xlim(0, 0.2)+
+  ylim(0, 0.65)+
+  theme_minimal()
+```
+```{r}
+baseline_lu <- raw_df %>% 
+  filter(notes == "Baseline") %>% 
+  filter(feedstock != "All") %>% 
+  mutate(type_final = case_when(
+    type == "Economic" ~ "Economic",
+    type == "Substitution" ~ substituion_type
+  )) %>% 
+  select(land_use, feedstock, type_final) %>% 
+  spread(key = type_final, value = land_use) %>% 
+  clean_names()
+
+ggplot(baseline_lu)+
+  geom_point(aes(x = economic, y = n_fertilizer, shape = feedstock, color = "N Fertilizer"), size = 3)+
+  geom_point(aes(x = economic, y = k_fertilizer, shape = feedstock, color = "K Fertilizer"), size = 3)+
+  geom_point(aes(x = economic, y = biofuel, shape = feedstock, color = "Biofuel"), size = 3)+
+  geom_point(aes(x = economic, y = animal_feed, shape = feedstock, color = "Animal Feed"), size = 3)+
+  geom_point(aes(x = economic, y = x2nd_oil, shape = feedstock, color = "2nd Oil"), size = 3)+
+  geom_abline(slope = 1, intercept = 0)+
+  xlim(0, 0.2)+
+  ylim(0, 0.65)+
+  theme_minimal()
+```
+
