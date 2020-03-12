@@ -134,7 +134,11 @@ ggplot(baseline_gwp)+
   geom_abline(slope = 1, intercept = 0)+
   xlim(0, 0.2)+
   ylim(0, 0.65)+
-  theme_minimal()
+  theme_minimal()+
+  xlab(expression(paste("GWP under Economic Allocation" , " (kg-CO"[2], " equivalent) ")))+
+  ylab(expression(paste("GWP under Substitution" , " (kg-CO"[2], " equivalent) ")))
+
+ggsave("gwp1-1.png")
 ```
 
 ```{r}
@@ -161,7 +165,11 @@ ggplot(baseline_ap)+
   geom_abline(slope = 1, intercept = 0)+
 #  xlim(0, 0.2)+
 #  ylim(0, 0.65)+
-  theme_minimal()
+  theme_minimal()+
+  xlab(expression(paste("AP under Economic Allocation" , " (kg-SO"[2], " equivalent) ")))+
+  ylab(expression(paste("AP under Substitution" , " (kg-SO"[2], " equivalent) ")))
+
+ggsave("ap1-1.png")
 ```
 ```{r}
 raw_df <- read_csv("calculation_result.csv") %>% 
@@ -187,5 +195,40 @@ ggplot(baseline_ep)+
   geom_abline(slope = 1, intercept = 0)+
 #  xlim(0, 0.2)+
 #  ylim(0, 0.65)+
-  theme_minimal()
+  theme_minimal()+
+  xlab(expression(paste("EP under Economic Allocation" , " (kg-PO"[4], " equivalent) ")))+
+  ylab(expression(paste("EP under Substitution" , " (kg-PO"[4], " equivalent) ")))
+
+ggsave("ep1-1.png")
+```
+
+```{r}
+raw_df <- read_csv("calculation_result.csv") %>% 
+  clean_names()
+
+baseline_lu <- raw_df %>% 
+  replace_na(list(substituion_type = "na")) %>% 
+  filter(notes == "Baseline") %>% 
+  filter(feedstock != "All") %>% 
+  filter(substituion_type != "K Fertilizer") %>% 
+  mutate(type_final = case_when(
+    type == "Economic" ~ "Economic",
+    str_detect(substituion_type, "Fertilizer") ~ "Substitution (Fertilizer)",
+    TRUE ~ "Substitution (Others)"
+  )) %>% 
+  select(land_use, feedstock, type_final) %>% 
+  spread(key = type_final, value = land_use) %>% 
+  clean_names()
+
+ggplot(baseline_lu)+
+  geom_point(aes(x = economic, y = substitution_fertilizer, color = feedstock, shape = "Fertilizer"), size = 3)+
+  geom_point(aes(x = economic, y = substitution_others, color = feedstock, shape = "Others"), size = 3)+
+  geom_abline(slope = 1, intercept = 0)+
+#  xlim(0, 0.2)+
+#  ylim(0, 0.65)+
+  theme_minimal()+
+  xlab(expression(paste("Land use under Economic Allocation" , " (m"[2], " of arable land) ")))+
+  ylab(expression(paste("Land use under Substitution" , " (m"[2], " of arable land) ")))
+
+ggsave("lu1-1.png")
 ```
