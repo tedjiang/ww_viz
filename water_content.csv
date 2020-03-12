@@ -1,4 +1,5 @@
-﻿3.4,Currency,94.04%,Origonal,0.0236,0.108,0.0688,0.135,NA,Olive,NA,Economic,Baseline,Value,4 Phase Olive Pomace,Upper bound,50,1000,314787.2,0.035130252,3.35626e-4,1.03379e-4,1.04e-6,0.5,2000
+﻿input_pertubation,input_unit,new_ratio,location,ghg,ap.x,ep.x,land_use.x,year,feedstock,substituion_type,type,notes,data_type,feed_stock,bound,moisture_content,weight_of_water_g,heat_needed_j,gwp_100a,land_use.y,ap.y,ep.y,moisture_content_percent,waste_amount_g
+3.4,Currency,94.04%,Origonal,0.0236,0.108,0.0688,0.135,NA,Olive,NA,Economic,Baseline,Value,4 Phase Olive Pomace,Upper bound,50,1000,314787.2,0.035130252,3.35626e-4,1.03379e-4,1.04e-6,0.5,2000
 5.51,Currency,99.06%,Spain,0.169,7.62e-4,5.79e-4,0.0836,2018,Grape,NA,Economic,Baseline,Value,Grape Pomace,Upper bound,68,2125,668922.8,0.074651784,7.13205e-4,2.19681e-4,2.22e-6,0.68,3125
 2634.7,Currency,89.50%,Central Am,0.0963,2.11e-4,2.77e-4,0.73,2013,Coffee,NA,Economic,Baseline,Value,Coffee Pulp,Upper bound,56.5,1298.850575,408861.5356,0.045628947,4.35928e-4,1.34274e-4,1.36e-6,0.565,2298.850575
 1799.63,Currency,NA,NA,0.0702,8.93e-4,0.0015,0.0133,NA,Cocoa,NA,Economic,Baseline,Value,Cocoa Husks,Upper bound,10.7,119.8208287,37718.06316,0.004209336,4.02e-5,1.24e-5,1.25e-7,0.107,1119.820829
