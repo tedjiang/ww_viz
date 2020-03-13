@@ -148,9 +148,11 @@ bar_saEcon_ghg <- ggplot(sa_econ_ghg, aes(x = feedstock, y = ghg, group = notes)
   geom_bar(stat = "identity", aes(fill = notes), position = "dodge")+
   theme_minimal()+
   labs(x = "Feedstock", y = expression(~kg-CO^2~equivalent), fill = "Price Scenario")+
-  scale_fill_manual(breaks = c("High Bound","Baseline","Low Bound"), values = ww_palette)
+  scale_fill_manual(breaks = c("High Bound","Baseline","Low Bound"), values = ww_palette)+
+  coord_flip()
 
 bar_saEcon_ghg
+ggsave("bar_saEcon_ghg.png", width = 8, height = 6)
 ```
 
 ```{r}
@@ -164,7 +166,8 @@ bar_saEcon_ap <- ggplot(sa_econ_ap, aes(x = feedstock, y = ap, group = notes))+
   geom_bar(stat = "identity", aes(fill = notes), position = "dodge")+
   theme_minimal()+
   labs(x = "Feedstock", y = expression(~kg-SO^2~equivalent), fill = "Price Scenario")+
-  scale_fill_manual(breaks = c("High Bound","Baseline","Low Bound"), values = ww_palette)
+  scale_fill_manual(breaks = c("High Bound","Baseline","Low Bound"), values = ww_palette)+
+  coord_flip()
 
 bar_saEcon_ap
 
@@ -180,10 +183,54 @@ bar_saEcon_ep <- ggplot(sa_econ_ep, aes(x = feedstock, y = ep, group = notes))+
   geom_bar(stat = "identity", aes(fill = notes), position = "dodge")+
   theme_minimal()+
   labs(x = "Feedstock", y = expression(~kg-PO^4~equivalent), fill = "Price Scenario")+
-  scale_fill_manual(breaks = c("High Bound","Baseline","Low Bound"), values = ww_palette)
+  scale_fill_manual(breaks = c("High Bound","Baseline","Low Bound"), values = ww_palette)+
+  coord_flip()+
+  guides(fill = FALSE)
 
 bar_saEcon_ep
 
+
+#combine ap and ep 
+
+ap_ep_combo <- bar_saEcon_ap/bar_saEcon_ep
+ggsave("ap_ep_combo.png", width = 8, height = 6)
+
+#AP and EP but coffee / cocoa only 
+
+sa_econ_ap_coff <- results_all %>%
+  filter(type == "Economic") %>% 
+  filter(feedstock == "Coffee" | feedstock == "Cocoa") %>% 
+  select(feedstock, ap, notes)
+
+bar_saEcon_ap_coff <- ggplot(sa_econ_ap_coff, aes(x = feedstock, y = ap, group = notes))+ 
+  geom_bar(stat = "identity", aes(fill = notes), position = "dodge")+
+  theme_minimal()+
+  labs(x = "Feedstock", y = expression(~kg-SO^2~equivalent), fill = "Price Scenario")+
+  scale_fill_manual(breaks = c("High Bound","Baseline","Low Bound"), values = ww_palette)+
+  coord_flip()
+
+bar_saEcon_ap_coff
+
+#EP for coffee and cocoa
+sa_econ_ep_coff <- results_all %>%
+  filter(type == "Economic") %>% 
+  filter(feedstock == "Coffee" | feedstock == "Cocoa") %>% 
+  select(feedstock, ep, notes)
+
+bar_saEcon_ep_coff <- ggplot(sa_econ_ep_coff, aes(x = feedstock, y = ep, group = notes))+ 
+  geom_bar(stat = "identity", aes(fill = notes), position = "dodge")+
+  theme_minimal()+
+  labs(x = "Feedstock", y = expression(~kg-PO^4~equivalent), fill = "Price Scenario")+
+  scale_fill_manual(breaks = c("High Bound","Baseline","Low Bound"), values = ww_palette)+
+  coord_flip()+
+  guides(fill = FALSE)
+
+bar_saEcon_ep_coff
+
+#combine AP and EP for coffee and cocoa
+
+bar_saEcon_ap_coff/bar_saEcon_ep_coff
+ggsave("coffee_cocoa_ap_ep.png", width = 8, height = 6)
 
 #Land Use
 
@@ -196,9 +243,10 @@ bar_saEcon_landuse <- ggplot(sa_econ_landuse, aes(x = feedstock, y = land_use, g
   geom_bar(stat = "identity", aes(fill = notes), position = "dodge")+
   theme_minimal()+
   labs(x = "Feedstock", y = expression(~m^2~of~arable~land), fill = "Price Scenario")+
-  scale_fill_manual(breaks = c("High Bound","Baseline","Low Bound"), values = ww_palette)
+  scale_fill_manual(breaks = c("High Bound","Baseline","Low Bound"), values = ww_palette)+
+  coord_flip()
 
 bar_saEcon_landuse
-
+ggsave("bar_saEcon_landuse.png", width = 8, height = 6)
 ```
 
