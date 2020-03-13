@@ -1,0 +1,122 @@
+---
+title: "making bar graphs"
+author: "Madeline Berger"
+date: "3/12/2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+library(tidyverse)
+library(janitor)
+library(patchwork)
+library(gt)
+library(paletteer)
+
+results_all <- read_csv("calculation_result.csv") %>% 
+  clean_names()
+
+#a color blind palette I found online
+cbbPalette <- c("#009E73", "#e79f00", "#9ad0f3")
+
+ww_palette <- c("#709896", "#44546A", "#C84900")
+
+```
+
+##Baseline results
+```{r}
+#GHG
+baseline_ghg <- results_all %>%
+  filter(notes == "Baseline") %>% 
+  filter(feedstock != "All") %>% 
+  select(feedstock, ghg, type_detail)
+
+bar_baseline_ghg <- ggplot(baseline_ghg, aes(x = feedstock, y = ghg, group = type_detail))+ 
+  geom_bar(stat = "identity", aes(fill = type_detail), position = "dodge")+
+  theme_minimal()+
+  labs(x = "Feedstock", y = expression(~kg-CO2^2~equivalent), fill = "Method")+
+  scale_fill_manual(breaks = c("Economic","Substitution","Fertilizer"),values = cbbPalette)
+
+bar_baseline_ghg
+
+#AP
+
+baseline_ap <- results_all %>%
+  filter(notes == "Baseline") %>% 
+  filter(feedstock != "All") %>% 
+  select(feedstock, ap, type_detail)
+
+bar_baseline_ap <- ggplot(baseline_ap, aes(x = feedstock, y = ap, group = type_detail))+ 
+  geom_bar(stat = "identity", aes(fill = type_detail), position = "dodge")+
+  theme_minimal()+
+  labs(x = "Feedstock", y = expression(~kg-SO^2~equivalent), fill = "Method")+
+  scale_fill_manual(breaks = c("Economic","Substitution","Fertilizer"), values = cbbPalette)
+
+bar_baseline_ap
+
+#AP no olive
+
+baseline_ap_noolive <- results_all %>%
+  filter(notes == "Baseline") %>% 
+  filter(feedstock != "All" & feedstock != "Olive") %>% 
+  select(feedstock, ap, type_detail)
+
+bar_baseline_ap_noolive <- ggplot(baseline_ap_noolive, aes(x = feedstock, y = ap, group = type_detail))+ 
+  geom_bar(stat = "identity", aes(fill = type_detail), position = "dodge")+
+  theme_minimal()+
+  labs(x = "Feedstock", y = expression(~kg-SO^2~equivalent), fill = "Method")+
+  scale_fill_manual(breaks = c("Economic","Substitution","Fertilizer"), values = cbbPalette)
+
+bar_baseline_ap_noolive
+
+
+
+#EP
+
+baseline_ep <- results_all %>%
+  filter(notes == "Baseline") %>% 
+  filter(feedstock != "All") %>% 
+  select(feedstock, ep, type_detail)
+
+bar_baseline_ep<- ggplot(baseline_ep, aes(x = feedstock, y = ep, group = type_detail))+ 
+  geom_bar(stat = "identity", aes(fill = type_detail), position = "dodge")+
+  theme_minimal()+
+  labs(x = "Feedstock", y = expression(~kg-PO^4~equivalent), fill = "Method")+
+  scale_fill_manual(breaks = c("Economic","Substitution","Fertilizer"), values = cbbPalette)
+
+bar_baseline_ep
+
+
+#EP no olive
+
+baseline_ep_noolive <- results_all %>%
+  filter(notes == "Baseline") %>% 
+  filter(feedstock != "All" & feedstock != "Olive") %>% 
+  select(feedstock, ep, type_detail)
+
+bar_baseline_ep_noolive <- ggplot(baseline_ep_noolive, aes(x = feedstock, y = ep, group = type_detail))+ 
+  geom_bar(stat = "identity", aes(fill = type_detail), position = "dodge")+
+  theme_minimal()+
+  labs(x = "Feedstock", y = expression(~kg-PO^4~equivalent), fill = "Method")+
+  scale_fill_manual(breaks = c("Economic","Substitution","Fertilizer"), values = cbbPalette)
+
+bar_baseline_ep_noolive
+
+#Landuse
+
+baseline_landuse <- results_all %>%
+  filter(notes == "Baseline") %>% 
+  filter(feedstock != "All") %>% 
+  select(feedstock, land_use, type_detail)
+
+bar_baseline_landuse<- ggplot(baseline_landuse, aes(x = feedstock, y = land_use, group = type_detail))+ 
+  geom_bar(stat = "identity", aes(fill = type_detail), position = "dodge")+
+  theme_minimal()+
+  labs(x = "Feedstock", y = expression(~m^2~of~arable~land), fill = "Method")+
+  scale_fill_manual(breaks = c("Economic","Substitution","Fertilizer"), values = cbbPalette)
+
+bar_baseline_landuse
+
+```
+

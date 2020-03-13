@@ -9,6 +9,15 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 library(tidyverse)
 library(janitor)
+library(patchwork)
+library(paletteer)
+
+#a color blind palette I found online
+cbbPalette <- c("#009E73", "#e79f00", "#9ad0f3")
+
+#our palette
+ww_palette <- c("#709896", "#44546A", "#C84900")
+
 ```
 
 ```{r}
