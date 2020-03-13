@@ -10,6 +10,7 @@ knitr::opts_chunk$set(echo = TRUE)
 library(tidyverse)
 library(janitor)
 library(here)
+library(patchwork)
 ```
 
 ```{r}
@@ -23,17 +24,245 @@ raw_water <- read_csv("sa_water_content.csv") %>%
 water_upper <- raw_water %>% 
   filter(bound == "Upper bound") %>% 
   filter(feed_stock != "3 Phase Olive Pomace") %>% 
-  rename(feedstock = product)
+  rename(feedstock = product) %>% 
+  rename(gwp = gwp_100a) %>% 
+  mutate(data_type = "Water Content") %>% 
+  select(feedstock, data_type, gwp, ap, ep,land_use)
 
-final_df <- full_join(raw_df, water_upper, by = "feedstock") %>% 
-  filter(notes == "Baseline",
-         feedstock != "All")
+baseline <- raw_df %>% 
+  filter(notes == "Baseline") %>% 
+  mutate(data_type = "Baseline") %>% 
+  filter(type == "Economic") %>% 
+  rename(gwp = ghg) %>% 
+  select(feedstock, data_type, gwp, ap, ep,land_use)
+
+final_df <- bind_rows(water_upper, baseline) %>% 
+  filter(feedstock != "All") %>% 
+  mutate(data_type = factor(data_type, levels = c("Water Content", "Baseline")))
+
+
+eplot_ghg <- ggplot(data = final_df) +
+  geom_bar(aes(x = feedstock, y = gwp, fill = data_type), stat = "identity", position = "stack")+
+  theme_minimal() +
+  xlab("Feedstock") +
+  ylab(expression(paste("GWP under Economic Allocation" , " (kg-CO"[2], " equivalent) ")))
+  
+#final_df <- full_join(raw_df, water_upper, by = "feedstock") %>% 
+ # filter(notes == "Baseline",
+ #        feedstock != "All")
 ```
 
 ```{r}
-path <- here("water_content.csv")
+water_upper <- raw_water %>% 
+  filter(bound == "Upper bound") %>% 
+  filter(feed_stock != "3 Phase Olive Pomace") %>% 
+  rename(feedstock = product) %>% 
+  rename(gwp = gwp_100a) %>% 
+  mutate(data_type = "Water Content") %>% 
+  select(feedstock, data_type, gwp, ap, ep,land_use)
 
-write_excel_csv(final_df, path, na = "NA", append = FALSE, col_names = FALSE, delim = ",", quote_escape = "double")
+baseline <- raw_df %>% 
+  filter(notes == "Baseline") %>% 
+  mutate(data_type = "Baseline") %>% 
+  filter(type == "Economic") %>% 
+  rename(gwp = ghg) %>% 
+  select(feedstock, data_type, gwp, ap, ep,land_use)
+
+final_df <- bind_rows(water_upper, baseline) %>% 
+  filter(feedstock != "All") %>% 
+  mutate(data_type = factor(data_type, levels = c("Water Content", "Baseline")))
+
+
+eplot_ap <- ggplot(data = final_df) +
+  geom_bar(aes(x = feedstock, y = ap, fill = data_type), stat = "identity", position = "stack")+
+  theme_minimal() +
+  xlab("Feedstock") +
+  ylab(expression(paste("AP under Economic Allocation" , " (kg-SO"[2], " equivalent) ")))
 ```
 
+```{r}
+water_upper <- raw_water %>% 
+  filter(bound == "Upper bound") %>% 
+  filter(feed_stock != "3 Phase Olive Pomace") %>% 
+  rename(feedstock = product) %>% 
+  rename(gwp = gwp_100a) %>% 
+  mutate(data_type = "Water Content") %>% 
+  select(feedstock, data_type, gwp, ap, ep,land_use)
+
+baseline <- raw_df %>% 
+  filter(notes == "Baseline") %>% 
+  mutate(data_type = "Baseline") %>% 
+  filter(type == "Economic") %>% 
+  rename(gwp = ghg) %>% 
+  select(feedstock, data_type, gwp, ap, ep,land_use)
+
+final_df <- bind_rows(water_upper, baseline) %>% 
+  filter(feedstock != "All") %>% 
+  mutate(data_type = factor(data_type, levels = c("Water Content", "Baseline")))
+
+
+eplot_ep <- ggplot(data = final_df) +
+  geom_bar(aes(x = feedstock, y = ep, fill = data_type), stat = "identity", position = "stack")+
+  theme_minimal() +
+  xlab("Feedstock") +
+  ylab(expression(paste("EP under Economic Allocation" , " (kg-PO"[4], " equivalent) ")))
+```
+
+```{r}
+water_upper <- raw_water %>% 
+  filter(bound == "Upper bound") %>% 
+  filter(feed_stock != "3 Phase Olive Pomace") %>% 
+  rename(feedstock = product) %>% 
+  rename(gwp = gwp_100a) %>% 
+  mutate(data_type = "Water Content") %>% 
+  select(feedstock, data_type, gwp, ap, ep,land_use)
+
+baseline <- raw_df %>% 
+  filter(notes == "Baseline") %>% 
+  mutate(data_type = "Baseline") %>% 
+  filter(type == "Economic") %>% 
+  rename(gwp = ghg) %>% 
+  select(feedstock, data_type, gwp, ap, ep,land_use)
+
+final_df <- bind_rows(water_upper, baseline) %>% 
+  filter(feedstock != "All") %>% 
+  mutate(data_type = factor(data_type, levels = c("Water Content", "Baseline")))
+
+
+eplot_lu <- ggplot(data = final_df) +
+  geom_bar(aes(x = feedstock, y = land_use, fill = data_type), stat = "identity", position = "stack")+
+  theme_minimal() +
+  xlab("Feedstock") +
+  ylab(expression(paste("Land use under Economic Allocation" , " (m"[2], " of arable land) ")))
+```
+
+
+```{r}
+water_upper <- raw_water %>% 
+  filter(bound == "Upper bound") %>% 
+  filter(feed_stock != "3 Phase Olive Pomace") %>% 
+  rename(feedstock = product) %>% 
+  rename(gwp = gwp_100a) %>% 
+  mutate(data_type = "Water Content") %>% 
+  select(feedstock, data_type, gwp, ap, ep,land_use)
+
+baseline <- raw_df %>% 
+  filter(notes == "Baseline") %>% 
+  mutate(data_type = "Baseline") %>% 
+  filter(substituion_type == "N Fertilizer") %>% 
+  rename(gwp = ghg) %>% 
+  select(feedstock, data_type, gwp, ap, ep,land_use)
+
+final_df <- bind_rows(water_upper, baseline) %>% 
+  filter(feedstock != "All") %>% 
+  mutate(data_type = factor(data_type, levels = c("Water Content", "Baseline")))
+
+#final_df <- full_join(raw_df, water_upper, by = "feedstock") %>% 
+ # filter(notes == "Baseline",
+ #        feedstock != "All")
+
+splot_gwp <- ggplot(data = final_df) +
+  geom_bar(aes(x = feedstock, y = gwp, fill = data_type), stat = "identity", position = "stack")+
+  theme_minimal() +
+  xlab("Feedstock") +
+  ylab(expression(paste("GWP under Substitution" , " (kg-CO"[2], " equivalent) ")))
+```
+
+```{r}
+water_upper <- raw_water %>% 
+  filter(bound == "Upper bound") %>% 
+  filter(feed_stock != "3 Phase Olive Pomace") %>% 
+  rename(feedstock = product) %>% 
+  rename(gwp = gwp_100a) %>% 
+  mutate(data_type = "Water Content") %>% 
+  select(feedstock, data_type, gwp, ap, ep,land_use)
+
+baseline <- raw_df %>% 
+  filter(notes == "Baseline") %>% 
+  mutate(data_type = "Baseline") %>% 
+  filter(substituion_type == "N Fertilizer") %>% 
+  rename(gwp = ghg) %>% 
+  select(feedstock, data_type, gwp, ap, ep,land_use)
+
+final_df <- bind_rows(water_upper, baseline) %>% 
+  filter(feedstock != "All") %>% 
+  mutate(data_type = factor(data_type, levels = c("Water Content", "Baseline")))
+
+#final_df <- full_join(raw_df, water_upper, by = "feedstock") %>% 
+ # filter(notes == "Baseline",
+ #        feedstock != "All")
+
+splot_ap <- ggplot(data = final_df) +
+  geom_bar(aes(x = feedstock, y = ap, fill = data_type), stat = "identity", position = "stack")+
+  theme_minimal() +
+  xlab("Feedstock") +
+  ylab(expression(paste("AP under Substituion" , " (kg-SO"[2], " equivalent) ")))
+```
+
+```{r}
+water_upper <- raw_water %>% 
+  filter(bound == "Upper bound") %>% 
+  filter(feed_stock != "3 Phase Olive Pomace") %>% 
+  rename(feedstock = product) %>% 
+  rename(gwp = gwp_100a) %>% 
+  mutate(data_type = "Water Content") %>% 
+  select(feedstock, data_type, gwp, ap, ep,land_use)
+
+baseline <- raw_df %>% 
+  filter(notes == "Baseline") %>% 
+  mutate(data_type = "Baseline") %>% 
+  filter(substituion_type == "N Fertilizer") %>% 
+  rename(gwp = ghg) %>% 
+  select(feedstock, data_type, gwp, ap, ep,land_use)
+
+final_df <- bind_rows(water_upper, baseline) %>% 
+  filter(feedstock != "All") %>% 
+  mutate(data_type = factor(data_type, levels = c("Water Content", "Baseline")))
+
+#final_df <- full_join(raw_df, water_upper, by = "feedstock") %>% 
+ # filter(notes == "Baseline",
+ #        feedstock != "All")
+
+splot_ep <- ggplot(data = final_df) +
+  geom_bar(aes(x = feedstock, y = ep, fill = data_type), stat = "identity", position = "stack")+
+  theme_minimal() +
+  xlab("Feedstock") +
+  ylab(expression(paste("EP under Substituion" , " (kg-PO"[4], " equivalent) ")))
+```
+
+```{r}
+water_upper <- raw_water %>% 
+  filter(bound == "Upper bound") %>% 
+  filter(feed_stock != "3 Phase Olive Pomace") %>% 
+  rename(feedstock = product) %>% 
+  rename(gwp = gwp_100a) %>% 
+  mutate(data_type = "Water Content") %>% 
+  select(feedstock, data_type, gwp, ap, ep,land_use)
+
+baseline <- raw_df %>% 
+  filter(notes == "Baseline") %>% 
+  mutate(data_type = "Baseline") %>% 
+  filter(substituion_type == "N Fertilizer") %>% 
+  rename(gwp = ghg) %>% 
+  select(feedstock, data_type, gwp, ap, ep,land_use)
+
+final_df <- bind_rows(water_upper, baseline) %>% 
+  filter(feedstock != "All") %>% 
+  mutate(data_type = factor(data_type, levels = c("Water Content", "Baseline")))
+
+#final_df <- full_join(raw_df, water_upper, by = "feedstock") %>% 
+ # filter(notes == "Baseline",
+ #        feedstock != "All")
+
+splot_lu <- ggplot(data = final_df) +
+  geom_bar(aes(x = feedstock, y = land_use, fill = data_type), stat = "identity", position = "stack")+
+  theme_minimal() +
+  xlab("Feedstock") +
+  ylab(expression(paste("Land use under Substitution" , " (m"[2], " of arable land) ")))
+```
+
+
+```{r}
+eplot_ghg | eplot_ap 
+```
 
