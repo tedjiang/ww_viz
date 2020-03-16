@@ -20,6 +20,7 @@ raw_df <- read_csv("calculation_result.csv") %>%
 raw_water <- read_csv("sa_water_content.csv") %>% 
   clean_names()
 ```
+
 ```{r}
 water_upper <- raw_water %>% 
   filter(bound == "Upper bound") %>% 
@@ -45,8 +46,7 @@ eplot_ghg <- ggplot(data = final_df) +
   geom_bar(aes(x = feedstock, y = gwp, fill = data_type), stat = "identity", position = "stack")+
   theme_minimal() +
   xlab("Feedstock") +
-  ylab(expression(paste("GWP under Economic Allocation" , " (kg-CO"[2], " equivalent) "))) +
-  scale_fill_discrete(name = "Process")
+  ylab(expression(paste("GWP under Economic Allocation" , " (kg-CO"[2], " equivalent) ")))
   
 #final_df <- full_join(raw_df, water_upper, by = "feedstock") %>% 
  # filter(notes == "Baseline",
@@ -78,8 +78,7 @@ eplot_ap <- ggplot(data = final_df) +
   geom_bar(aes(x = feedstock, y = ap, fill = data_type), stat = "identity", position = "stack")+
   theme_minimal() +
   xlab("Feedstock") +
-  ylab(expression(paste("AP under Economic Allocation" , " (kg-SO"[2], " equivalent) "))) +
-  scale_fill_discrete(name = "Process")
+  ylab(expression(paste("AP under Economic Allocation" , " (kg-SO"[2], " equivalent) ")))
 ```
 
 ```{r}
@@ -107,8 +106,7 @@ eplot_ep <- ggplot(data = final_df) +
   geom_bar(aes(x = feedstock, y = ep, fill = data_type), stat = "identity", position = "stack")+
   theme_minimal() +
   xlab("Feedstock") +
-  ylab(expression(paste("EP under Economic Allocation" , " (kg-PO"[4], " equivalent) "))) +
-  scale_fill_discrete(name = "Process")
+  ylab(expression(paste("EP under Economic Allocation" , " (kg-PO"[4], " equivalent) ")))
 ```
 
 ```{r}
@@ -136,8 +134,7 @@ eplot_lu <- ggplot(data = final_df) +
   geom_bar(aes(x = feedstock, y = land_use, fill = data_type), stat = "identity", position = "stack")+
   theme_minimal() +
   xlab("Feedstock") +
-  ylab(expression(paste("Land use under Economic Allocation" , " (m"[2], " of arable land) "))) +
-  scale_fill_discrete(name = "Process")
+  ylab(expression(paste("Land use under Economic Allocation" , " (m"[2], " of arable land) ")))
 ```
 
 
@@ -169,8 +166,7 @@ splot_gwp <- ggplot(data = final_df) +
   geom_bar(aes(x = feedstock, y = gwp, fill = data_type), stat = "identity", position = "stack")+
   theme_minimal() +
   xlab("Feedstock") +
-  ylab(expression(paste("GWP under Substitution" , " (kg-CO"[2], " equivalent) "))) +
-  scale_fill_discrete(name = "Process")
+  ylab(expression(paste("GWP under Substitution" , " (kg-CO"[2], " equivalent) ")))
 ```
 
 ```{r}
@@ -201,8 +197,7 @@ splot_ap <- ggplot(data = final_df) +
   geom_bar(aes(x = feedstock, y = ap, fill = data_type), stat = "identity", position = "stack")+
   theme_minimal() +
   xlab("Feedstock") +
-  ylab(expression(paste("AP under Substituion" , " (kg-SO"[2], " equivalent) "))) +
-  scale_fill_discrete(name = "Process")
+  ylab(expression(paste("AP under Substituion" , " (kg-SO"[2], " equivalent) ")))
 ```
 
 ```{r}
@@ -233,8 +228,7 @@ splot_ep <- ggplot(data = final_df) +
   geom_bar(aes(x = feedstock, y = ep, fill = data_type), stat = "identity", position = "stack")+
   theme_minimal() +
   xlab("Feedstock") +
-  ylab(expression(paste("EP under Substituion" , " (kg-PO"[4], " equivalent) "))) +
-  scale_fill_discrete(name = "Process")
+  ylab(expression(paste("EP under Substituion" , " (kg-PO"[4], " equivalent) ")))
 ```
 
 ```{r}
@@ -265,29 +259,11 @@ splot_lu <- ggplot(data = final_df) +
   geom_bar(aes(x = feedstock, y = land_use, fill = data_type), stat = "identity", position = "stack")+
   theme_minimal() +
   xlab("Feedstock") +
-  ylab(expression(paste("Land use under Substitution" , " (m"[2], " of arable land) "))) +
-  scale_fill_discrete(name = "Process")
-
-splot_lu
+  ylab(expression(paste("Land use under Substitution" , " (m"[2], " of arable land) ")))
 ```
 
 
 ```{r}
-eplot_ghg
-ggsave("GWP_WC_E.png")
-eplot_ap
-ggsave("AP_WC_E.png")
-eplot_ep
-ggsave("EP_EC_E.png")
-eplot_lu
-ggsave("LU_WC_E.png")
-splot_gwp
-ggsave("GWP_WC_S.png")
-splot_ap
-ggsave("AP_WC_S.png")
-splot_ep
-ggsave("EP_WC_S.png")
-splot_lu
-ggsave("LU_WC_S.png")
+eplot_ghg | eplot_ap 
 ```
 

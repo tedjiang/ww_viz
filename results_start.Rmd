@@ -270,6 +270,14 @@ ggsave("bar_saEcon_landuse.png", width = 8, height = 6)
 
 #GHG 
 
+sub_sa_ghg <- results_all %>% 
+  filter(type == "Substitution") %>% 
+  select(feedstock, ghg, substituion_type, type) %>% 
+  filter(substituion_type != "K Fertilizer") %>% 
+  filter()
+  
+  
+
 
 
 
