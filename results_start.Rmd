@@ -26,15 +26,16 @@ water_content <- read_csv("sa_water_content.csv")
 
 cbPalette_full <- c("#999999", "#E69F00", "#56B4E9", "#009E73", "#F0E442", "#0072B2", "#D55E00", "#CC79A7")
 
-cbbPalette <- c("#2D8E87", "#FEBC38", "#85C0F9")
+cbbPalette <- c("#b7472a", "#ccedd2", "#394a6d")
 
+# pink:"#f67575"
 #F0E442
 
 #a color blind palette that is different
 
 #our palette
 
-ww_palette <- c("#C84900", "#709896", "#27647B")
+ww_palette <- c("#5c94bd", "#ccedd2", "#394a6d")
 
 ```
 
@@ -52,7 +53,8 @@ bar_baseline_ghg <- ggplot(baseline_ghg, aes(x = feedstock, y = ghg, group = typ
   geom_bar(stat = "identity", aes(fill = type_detail), position = "dodge")+
   theme_minimal()+
   labs(x = "Feedstock", y = expression(~Global~Warming~Potential~(kg-CO^2~equivalent)), fill = "Method")+
-  scale_fill_manual(breaks = c("Economic","Substitution","Fertilizer"),values = cbbPalette)
+  scale_fill_manual(breaks = c("Economic","Substitution","Fertilizer"),values = cbbPalette)+
+  guides(fill = FALSE)
 
 bar_baseline_ghg
 
@@ -103,7 +105,8 @@ bar_baseline_ep<- ggplot(baseline_ep, aes(x = feedstock, y = ep, group = type_de
   geom_bar(stat = "identity", aes(fill = type_detail), position = "dodge")+
   theme_minimal()+
   labs(x = "Feedstock", y = expression(~Eutrophication~Potential~(kg-PO^4~equivalent)), fill = "Method")+
-  scale_fill_manual(breaks = c("Economic","Substitution","Fertilizer"), values = cbbPalette)
+  scale_fill_manual(breaks = c("Economic","Substitution","Fertilizer"), values = cbbPalette)+
+  guides(fill = FALSE)
 
 bar_baseline_ep
 
@@ -142,6 +145,14 @@ bar_baseline_landuse
 
 ggsave("bar_baseline_landuse.png")
 ```
+#Combine Graphs
+```{r}
+
+four <- (bar_baseline_ghg + bar_baseline_ap)/(bar_baseline_landuse + bar_baseline_ep)
+ggsave("four_baseline.png", width = 8, height = 6)
+
+
+```
 
 
 #Scenario Analysis - Economic
@@ -159,8 +170,7 @@ bar_saEcon_ghg <- ggplot(sa_econ_ghg, aes(x = feedstock, y = ghg, group = notes)
   geom_bar(stat = "identity", aes(fill = notes), position = "dodge")+
   theme_minimal()+
   labs(x = "Feedstock", y = expression(~Global~Warming~Potential~(kg-CO^2~equivalent)), fill = "Price Scenario")+
-  scale_fill_manual(breaks = c("High Bound","Baseline","Low Bound"), values = ww_palette)+
-  coord_flip()
+  scale_fill_manual(breaks = c("High Bound","Baseline","Low Bound"), values = ww_palette)
 
 bar_saEcon_ghg
 ggsave("bar_saEcon_ghg.png", width = 8, height = 6)
@@ -180,8 +190,7 @@ bar_saEcon_ap <- ggplot(sa_econ_ap, aes(x = feedstock, y = ap, group = notes))+
   geom_bar(stat = "identity", aes(fill = notes), position = "dodge")+
   theme_minimal()+
   labs(x = "Feedstock", y = expression(~Acidification~Potential(~kg-SO^2~equivalent)), fill = "Price Scenario")+
-  scale_fill_manual(breaks = c("High Bound","Baseline","Low Bound"), values = ww_palette)+
-  coord_flip()
+  scale_fill_manual(breaks = c("High Bound","Baseline","Low Bound"), values = ww_palette)
 
 bar_saEcon_ap
 
@@ -198,7 +207,6 @@ bar_saEcon_ep <- ggplot(sa_econ_ep, aes(x = feedstock, y = ep, group = notes))+
   theme_minimal()+
   labs(x = "Feedstock", y = expression(~Eutrophication~Potential~kg-PO^4~equivalent), fill = "Price Scenario")+
   scale_fill_manual(breaks = c("High Bound","Baseline","Low Bound"), values = ww_palette)+
-  coord_flip()+
   guides(fill = FALSE)
 
 bar_saEcon_ep
@@ -219,9 +227,8 @@ sa_econ_ap_coff <- results_all %>%
 bar_saEcon_ap_coff <- ggplot(sa_econ_ap_coff, aes(x = feedstock, y = ap, group = notes))+ 
   geom_bar(stat = "identity", aes(fill = notes), position = "dodge")+
   theme_minimal()+
-  labs(x = "Feedstock", y = expression(~Aciditication~Potential~(kg-SO^2~equivalent)), fill = "Price Scenario")+
-  scale_fill_manual(breaks = c("High Bound","Baseline","Low Bound"), values = ww_palette)+
-  coord_flip()
+  labs(x = "Feedstock", y = expression(~AP~(kg-SO^2~equivalent)), fill = "Price Scenario")+
+  scale_fill_manual(breaks = c("High Bound","Baseline","Low Bound"), values = ww_palette)
 
 bar_saEcon_ap_coff
 
@@ -234,9 +241,8 @@ sa_econ_ep_coff <- results_all %>%
 bar_saEcon_ep_coff <- ggplot(sa_econ_ep_coff, aes(x = feedstock, y = ep, group = notes))+ 
   geom_bar(stat = "identity", aes(fill = notes), position = "dodge")+
   theme_minimal()+
-  labs(x = "Feedstock", y = expression(~Eutrophication~Potential~kg-PO^4~equivalent), fill = "Price Scenario")+
+  labs(x = "Feedstock", y = expression(~EP~(kg-PO^4~equivalent)), fill = "Price Scenario")+
   scale_fill_manual(breaks = c("High Bound","Baseline","Low Bound"), values = ww_palette)+
-  coord_flip()+
   guides(fill = FALSE)
 
 bar_saEcon_ep_coff
@@ -257,8 +263,7 @@ bar_saEcon_landuse <- ggplot(sa_econ_landuse, aes(x = feedstock, y = land_use, g
   geom_bar(stat = "identity", aes(fill = notes), position = "dodge")+
   theme_minimal()+
   labs(x = "Feedstock", y = expression(~Land~Occupation~(m^2~of~arable~land)), fill = "Price Scenario")+
-  scale_fill_manual(breaks = c("High Bound","Baseline","Low Bound"), values = ww_palette)+
-  coord_flip()
+  scale_fill_manual(breaks = c("High Bound","Baseline","Low Bound"), values = ww_palette)
 
 bar_saEcon_landuse
 ggsave("bar_saEcon_landuse.png", width = 8, height = 6)

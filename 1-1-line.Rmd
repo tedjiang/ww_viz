@@ -13,11 +13,18 @@ library(patchwork)
 library(paletteer)
 
 #a color blind palette I found online
-cbbPalette <- c("#009E73", "#e79f00", "#9ad0f3")
+
+cbPalette_full <- c("#999999", "#E69F00", "#56B4E9", "#009E73", "#F0E442", "#0072B2", "#D55E00", "#CC79A7")
+
+cbbPalette <- c("#2D8E87", "#FEBC38", "#85C0F9")
+
+#F0E442
+
+#a color blind palette that is different
 
 #our palette
-ww_palette <- c("#709896", "#44546A", "#C84900")
 
+ww_palette_4 <- c("#C84900", "#4B8FF7FF", "#2A363BFF","#99B898FF")
 ```
 
 ```{r}
@@ -44,7 +51,12 @@ ggplot(baseline_gwp)+
   geom_abline(slope = 1, intercept = 0)+
   xlim(0, 0.2)+
   ylim(0, 0.65)+
-  theme_minimal()
+  theme_minimal()+
+  #scale_color_paletteer_d("awtools::a_palette")+
+  scale_color_manual(breaks = c("Cocoa","Coffee","Grape", "Olive"), values = ww_palette_4)+
+  labs(x = "Economic", y = "Subsitution", color = "Feedstock", shape = "Alternate Use")
+
+ggsave("1_1_gwp.png")
 ```
 
 ```{r}
@@ -145,7 +157,9 @@ ggplot(baseline_gwp)+
   ylim(0, 0.65)+
   theme_minimal()+
   xlab(expression(paste("GWP under Economic Allocation" , " (kg-CO"[2], " equivalent) ")))+
-  ylab(expression(paste("GWP under Substitution" , " (kg-CO"[2], " equivalent) ")))
+  ylab(expression(paste("GWP under Substitution" , " (kg-CO"[2], " equivalent) ")))+
+  scale_color_manual(breaks = c("Cocoa","Coffee","Grape", "Olive"), values = ww_palette_4)+
+  labs(color = "Feedstock", shape = "Alternate Use")
 
 ggsave("gwp1-1.png")
 ```
@@ -176,7 +190,9 @@ ggplot(baseline_ap)+
 #  ylim(0, 0.65)+
   theme_minimal()+
   xlab(expression(paste("AP under Economic Allocation" , " (kg-SO"[2], " equivalent) ")))+
-  ylab(expression(paste("AP under Substitution" , " (kg-SO"[2], " equivalent) ")))
+  ylab(expression(paste("AP under Substitution" , " (kg-SO"[2], " equivalent) ")))+
+  scale_color_manual(breaks = c("Cocoa","Coffee","Grape", "Olive"), values = ww_palette_4)+
+  labs(color = "Feedstock", shape = "Alternate Use")
 
 ggsave("ap1-1.png")
 ```
@@ -206,7 +222,9 @@ ggplot(baseline_ep)+
 #  ylim(0, 0.65)+
   theme_minimal()+
   xlab(expression(paste("EP under Economic Allocation" , " (kg-PO"[4], " equivalent) ")))+
-  ylab(expression(paste("EP under Substitution" , " (kg-PO"[4], " equivalent) ")))
+  ylab(expression(paste("EP under Substitution" , " (kg-PO"[4], " equivalent) ")))+
+  scale_color_manual(breaks = c("Cocoa","Coffee","Grape", "Olive"), values = ww_palette_4)+
+  labs(color = "Feedstock", shape = "Alternate Use")
 
 ggsave("ep1-1.png")
 ```
@@ -237,7 +255,9 @@ ggplot(baseline_lu)+
 #  ylim(0, 0.65)+
   theme_minimal()+
   xlab(expression(paste("Land use under Economic Allocation" , " (m"[2], " of arable land) ")))+
-  ylab(expression(paste("Land use under Substitution" , " (m"[2], " of arable land) ")))
+  ylab(expression(paste("Land use under Substitution" , " (m"[2], " of arable land) ")))+
+  scale_color_manual(breaks = c("Cocoa","Coffee","Grape", "Olive"), values = ww_palette_4)+
+  labs(color = "Feedstock", shape = "Alternate Use")
 
 ggsave("lu1-1.png")
 ```
