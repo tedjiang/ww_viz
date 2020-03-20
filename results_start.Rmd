@@ -52,7 +52,7 @@ baseline_ghg <- results_all %>%
 bar_baseline_ghg <- ggplot(baseline_ghg, aes(x = feedstock, y = ghg, group = type_detail))+ 
   geom_bar(stat = "identity", aes(fill = type_detail), position = "dodge")+
   theme_minimal()+
-  labs(x = "Feedstock", y = expression(~Global~Warming~Potential~(kg-CO^2~equivalent)), fill = "Method")+
+  labs(x = "Feedstock", y = expression(~GWP~(kg-CO^2~equivalent)), fill = "Method")+
   scale_fill_manual(breaks = c("Economic","Substitution","Fertilizer"),values = cbbPalette)+
   guides(fill = FALSE)
 
@@ -70,7 +70,7 @@ baseline_ap <- results_all %>%
 bar_baseline_ap <- ggplot(baseline_ap, aes(x = feedstock, y = ap, group = type_detail))+ 
   geom_bar(stat = "identity", aes(fill = type_detail), position = "dodge")+
   theme_minimal()+
-  labs(x = "Feedstock", y = expression(~Acidification~Potential~(kg-SO^2~equivalent)), fill = "Method")+
+  labs(x = "Feedstock", y = expression(~AP~(kg-SO^2~equivalent)), fill = "Method")+
   scale_fill_manual(breaks = c("Economic","Substitution","Fertilizer"), values = cbbPalette)
 
 bar_baseline_ap
@@ -87,7 +87,7 @@ baseline_ap_noolive <- results_all %>%
 bar_baseline_ap_noolive <- ggplot(baseline_ap_noolive, aes(x = feedstock, y = ap, group = type_detail))+ 
   geom_bar(stat = "identity", aes(fill = type_detail), position = "dodge")+
   theme_minimal()+
-  labs(x = "Feedstock", y = expression(~Acidification~Potential~(kg-SO^2~equivalent)), fill = "Method")+
+  labs(x = "Feedstock", y = expression(~AP~(kg-SO^2~equivalent)), fill = "Method")+
   scale_fill_manual(breaks = c("Economic","Substitution","Fertilizer"), values = cbbPalette)
 
 bar_baseline_ap_noolive
@@ -104,7 +104,7 @@ baseline_ep <- results_all %>%
 bar_baseline_ep<- ggplot(baseline_ep, aes(x = feedstock, y = ep, group = type_detail))+ 
   geom_bar(stat = "identity", aes(fill = type_detail), position = "dodge")+
   theme_minimal()+
-  labs(x = "Feedstock", y = expression(~Eutrophication~Potential~(kg-PO^4~equivalent)), fill = "Method")+
+  labs(x = "Feedstock", y = expression(~EP~(kg-PO^4~equivalent)), fill = "Method")+
   scale_fill_manual(breaks = c("Economic","Substitution","Fertilizer"), values = cbbPalette)+
   guides(fill = FALSE)
 
@@ -122,7 +122,7 @@ baseline_ep_noolive <- results_all %>%
 bar_baseline_ep_noolive <- ggplot(baseline_ep_noolive, aes(x = feedstock, y = ep, group = type_detail))+ 
   geom_bar(stat = "identity", aes(fill = type_detail), position = "dodge")+
   theme_minimal()+
-  labs(x = "Feedstock", y = expression(~Eutrophication~Potential~(kg-PO^4~equivalent)), fill = "Method")+
+  labs(x = "Feedstock", y = expression(~EP~(kg-PO^4~equivalent)), fill = "Method")+
   scale_fill_manual(breaks = c("Economic","Substitution","Fertilizer"), values = cbbPalette)
 
 bar_baseline_ep_noolive
@@ -137,7 +137,7 @@ baseline_landuse <- results_all %>%
 bar_baseline_landuse<- ggplot(baseline_landuse, aes(x = feedstock, y = land_use, group = type_detail))+ 
   geom_bar(stat = "identity", aes(fill = type_detail), position = "dodge")+
   theme_minimal()+
-  labs(x = "Feedstock", y = expression(~Land~Occupation~(m^2~of~arable~land)), fill = "Method")+
+  labs(x = "Feedstock", y = expression(~Land~Use~(m^2~of~arable~land)), fill = "Method")+
   scale_fill_manual(breaks = c("Economic","Substitution","Fertilizer"), values = cbbPalette)+
   scale_y_continuous(expand = c(0,0))
 
