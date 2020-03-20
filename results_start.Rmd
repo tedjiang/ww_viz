@@ -35,7 +35,7 @@ cbbPalette <- c("#b7472a", "#ccedd2", "#394a6d")
 
 #our palette
 
-ww_palette <- c("#5c94bd", "#ccedd2", "#394a6d")
+ww_palette <- c("#ccedd2", "#5c94bd", "#394a6d")
 
 ```
 
@@ -164,6 +164,7 @@ ggsave("four_baseline.png", width = 8, height = 6)
 
 sa_econ_ghg <- results_all %>%
   filter(type == "Economic") %>% 
+  mutate(notes = factor(notes, levels = c("High Bound","Baseline","Low Bound"))) %>% 
   select(feedstock, ghg, notes)
 
 bar_saEcon_ghg <- ggplot(sa_econ_ghg, aes(x = feedstock, y = ghg, group = notes))+ 
@@ -184,12 +185,13 @@ ggsave("bar_saEcon_ghg.png", width = 8, height = 6)
 
 sa_econ_ap <- results_all %>%
   filter(type == "Economic") %>% 
+  mutate(notes = factor(notes, levels = c("High Bound","Baseline","Low Bound"))) %>% 
   select(feedstock, ap, notes)
 
 bar_saEcon_ap <- ggplot(sa_econ_ap, aes(x = feedstock, y = ap, group = notes))+ 
   geom_bar(stat = "identity", aes(fill = notes), position = "dodge")+
   theme_minimal()+
-  labs(x = "Feedstock", y = expression(~Acidification~Potential(~kg-SO^2~equivalent)), fill = "Price Scenario")+
+  labs(x = "Feedstock", y = expression(~AP(kg-SO^2~equivalent)), fill = "Price Scenario")+
   scale_fill_manual(breaks = c("High Bound","Baseline","Low Bound"), values = ww_palette)
 
 bar_saEcon_ap
@@ -200,12 +202,13 @@ bar_saEcon_ap
 
 sa_econ_ep <- results_all %>%
   filter(type == "Economic") %>% 
+  mutate(notes = factor(notes, levels = c("High Bound","Baseline","Low Bound"))) %>% 
   select(feedstock, ep, notes)
 
 bar_saEcon_ep <- ggplot(sa_econ_ep, aes(x = feedstock, y = ep, group = notes))+ 
   geom_bar(stat = "identity", aes(fill = notes), position = "dodge")+
   theme_minimal()+
-  labs(x = "Feedstock", y = expression(~Eutrophication~Potential~kg-PO^4~equivalent), fill = "Price Scenario")+
+  labs(x = "Feedstock", y = expression(~EP(kg-PO^4~equivalent)), fill = "Price Scenario")+
   scale_fill_manual(breaks = c("High Bound","Baseline","Low Bound"), values = ww_palette)+
   guides(fill = FALSE)
 
@@ -222,6 +225,7 @@ ggsave("ap_ep_combo.png", width = 8, height = 6)
 sa_econ_ap_coff <- results_all %>%
   filter(type == "Economic") %>% 
   filter(feedstock == "Coffee" | feedstock == "Cocoa") %>% 
+  mutate(notes = factor(notes, levels = c("High Bound","Baseline","Low Bound"))) %>% 
   select(feedstock, ap, notes)
 
 bar_saEcon_ap_coff <- ggplot(sa_econ_ap_coff, aes(x = feedstock, y = ap, group = notes))+ 
@@ -236,6 +240,7 @@ bar_saEcon_ap_coff
 sa_econ_ep_coff <- results_all %>%
   filter(type == "Economic") %>% 
   filter(feedstock == "Coffee" | feedstock == "Cocoa") %>% 
+  mutate(notes = factor(notes, levels = c("High Bound","Baseline","Low Bound"))) %>% 
   select(feedstock, ep, notes)
 
 bar_saEcon_ep_coff <- ggplot(sa_econ_ep_coff, aes(x = feedstock, y = ep, group = notes))+ 
@@ -257,6 +262,7 @@ ggsave("coffee_cocoa_ap_ep.png", width = 8, height = 6)
 
 sa_econ_landuse <- results_all %>%
   filter(type == "Economic") %>% 
+  mutate(notes = factor(notes, levels = c("High Bound","Baseline","Low Bound"))) %>% 
   select(feedstock, land_use, notes)
 
 bar_saEcon_landuse <- ggplot(sa_econ_landuse, aes(x = feedstock, y = land_use, group = notes))+ 
